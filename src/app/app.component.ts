@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {createElement} from 'react';
-import { render } from 'react-dom';
-import * as UserButton from "dino-react-user-button"
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import UserButton from "dino-react-user-button"
 
 @Component({
   selector: 'app-root',
@@ -12,12 +10,17 @@ export class AppComponent implements OnInit {
 
   reactBtn = UserButton;
 
-  reactBtnProps = {};
+  userElementBtn: any;
 
+  constructor(private el: ElementRef){}
   ngOnInit(): void {
-    // this.userElementBtn = createElement('button', {}, 'Click Me!');
+    // this.userElementBtn = createElement(UserButton);
     // render(this.userElementBtn, document.getElementById('reactBtn'));
+  }
 
+  @HostListener('window:reactBtnClick', ['$event'])
+  captureEvent(event:any) {
+    console.log('Angular app captures react event', event)
   }
 
   

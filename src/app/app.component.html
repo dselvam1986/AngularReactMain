@@ -37,14 +37,14 @@
 
   <!-- Highlight Card -->
   <div class="card highlight-card card-small">
-    <!-- <div reactComponentDirective [reactComponent]="reactBtn" [props]="reactBtnProps"></div> -->
 
-    <customReactComponent></customReactComponent>
+    <!-- <customReactComponent></customReactComponent> -->
+    <div reactWrap [reactComponent]="reactBtn"></div>
   </div>
 
   <!-- Resources -->
   <div class="card-container">
-    <reactWrapperComponent [component]="reactBtn" [props]="reactBtnProps"></reactWrapperComponent>
+    <!-- <reactWrapperComponent [component]="reactBtn" [props]="reactBtnProps"></reactWrapperComponent> -->
   </div>
 
 </div>

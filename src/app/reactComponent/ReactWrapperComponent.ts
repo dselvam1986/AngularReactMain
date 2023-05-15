@@ -5,27 +5,29 @@ import {
     OnInit
   } from '@angular/core';
   import * as React from 'react';
-  import * as ReactDOM from 'react-dom';
+  import {createRoot} from 'react-dom/client';
   import * as UserButton from "dino-react-user-button"
   
   @Component({
     selector: 'reactWrapperComponent',
-    template: `<div  #reactContainer>
-    <div>this is react Container</div>
-    </div>`,
+    template: `<div  #reactContainer></div>`,
   })
   export class ReactWrapperComponent implements OnInit {
   
     @Input() component: any;
     @Input() props: any;
+
+    rootComp: any;
       
     constructor(private el: ElementRef) {
     }
   
     ngOnInit(): void {
-        const {component, props} = this;
+      this.rootComp = createRoot(this.el.nativeElement.querySelector('#reactContainer'));
 
-        ReactDOM.render(React.createElement(component, props), this.el.nativeElement.querySelector('#reactContainer'));
+      this.rootComp.render(this.component);
+      
+      // render(React.createElement(this.component), this.el.nativeElement.querySelector('#reactContainer'));
     }
   }
   
